@@ -1,0 +1,25 @@
+{% include 'base.html' %}
+
+{% block 'content' %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title">{{name}}</h1>
+            
+            <ul>
+                {% for volume in volumes %}
+                    <li>
+                        <a href="/reader?name={{name|urlencode}}&volume={{volume.volume|urlencode}}">{{ name }} Vol. {{ volume.volume }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" enctype="multipart/form-data" class="form">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,146 @@
+@import "main.scss";
+
+* {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    font-family: sans-serif;
+
+
+    box-sizing: border-box;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    color: white;
+
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 1%, rgba(166,166,166,1) 42%, rgba(0,0,0,1) 100%);
+}
+
+img {
+    display: block;
+    margin: auto;
+    height: 100vh;
+}
+
+.current-page-number {
+    bottom: 2rem;
+    left: 50%;
+    transform: translate(-50%);
+    user-select: none;
+
+    padding: .5rem;
+    border-radius: .5rem;
+
+    background-color: black;
+    color:white;
+}
+
+.fade-in {
+    opacity: 1;
+    animation: fade-in .5s;
+}
+
+.content {
+    display: table;
+    position: relative;
+    margin: auto;
+
+    .btn {
+        position: absolute;
+        height: 100%;
+
+        top:0;
+        left:0;
+
+        outline: none;
+        border: none;
+        background-color: transparent;
+
+        /*&:hover {
+            background-color: rgba(0,0,0,.5);
+        }*/
+    }
+
+
+    #next-btn, #previous-btn {
+        min-width: 30%;
+    }
+
+    #previous-btn {
+        left: 70%;
+    }
+
+    #controls-btn {
+        min-width: 40%;
+        left: 30%;
+    }
+}
+
+.controls {
+    position: absolute;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: 10%;
+    min-height: 75px;
+
+    button {
+        color: darken(white, 15%);
+    }
+
+    #image-scale-container {
+        min-width: 50%;
+        position: relative;
+        text-align: center;
+
+        #image-scale {
+            width: 100%;
+        }
+
+        #image-scale-span {
+            font-size: large;
+        }
+    }
+}
+
+.current-page-number, .controls {
+    background-color: rgba(0,0,0,.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: fixed;
+}
+
+@media screen and (max-width: 600px) {
+    img {
+        object-fit: contain;
+        height: 100vh;
+        max-width: 100vmin;
+    }
+
+    .controls {
+        font-size: small;
+
+        #image-scale-container {
+            display: none;
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

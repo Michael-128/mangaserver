@@ -1,0 +1,7 @@
+.card {
+    position: relative;
+}
+
+.card-content {
+    position: absolute !important;
+}

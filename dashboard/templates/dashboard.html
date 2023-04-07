@@ -1,0 +1,16 @@
+{% include 'base.html' %}
+
+{% block 'content' %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                Dashboard
+            </h1>
+            <ul>
+                {% for manga in manga_series %}
+                    <li> <a href="/manga_details?name={{ manga.model.name|urlencode}}">[{{manga.model.author}}] {{manga.model.name}}</a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endblock %}

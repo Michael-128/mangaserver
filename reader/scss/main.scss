@@ -1,0 +1,48 @@
+@import "../static/fontawesome/scss/fontawesome.scss";
+
+@import "../static/fontawesome/scss/solid.scss";
+@import "../static/fontawesome/scss/brands.scss";
+
+
+@font-face {
+    font-family: Noto Sans;
+    font-style: regular;
+    src: url("/static/fonts/notosans/NotoSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: Noto Sans JP;
+    font-style: regular;
+    src: url("/static/fonts/notosans/NotoSansJP-Regular.otf");
+}
+
+$primary-color: darken(rgb(189,0,135), 10%);
+$primary-font-color: lighten($primary-color, 67%);
+
+$background-color: lighten(rgb(189,0,135), 55%);
+
+
+i {
+    font-size: x-large;
+
+    &:hover {
+        color: white;
+        cursor: pointer;
+    }
+
+    transition: color .2s;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: none;
+    border: none;
+    outline: none;
+    color: inherit;
+
+    margin: 0;
+    padding: 0;
+}

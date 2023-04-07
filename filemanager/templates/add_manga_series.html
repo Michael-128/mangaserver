@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Manga Series</title>
+
+    <script src="{% static 'js/lib/jquery-3.6.4.js' %}"></script>
+    <script src="{% static 'js/mangaInfoSearch.js' %}" defer></script>
+
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+</head>
+<body>
+    <div class="navbar is-primary">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                Manga Reader
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Add manga series</h1>
+    
+            <form class="form" action="" method="POST" enctype="multipart/form-data">
+                <table class="table">
+                    {% csrf_token %}
+                    {{manga_series_form.as_table}}
+                    
+                    {% for field in manga_volume_form %}
+                        <tr>
+                            <td><strong>{{ field.label_tag }}</strong></td>
+                            <td class="file has-name">
+                                <label class="file-label">
+                                    {{ field }}
+                                    <span class="file-cta">
+                                        <span class="file-label">
+                                            Choose files...
+                                        </span>
+                                    </span>
+                                    <span class="file-name">
+                                        No files chosen.
+                                    </span>
+                                </label>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+        
+                <button class="button is-primary" type="submit">Submit</button>
+                <button class="button is-secondary" type="reset">Clear</button>
+            </form>
+    
+            <script>
+                $("input[type='text']").addClass("input")
+                $("input[type='number']").addClass("input")
+                $("textarea").addClass("textarea")
+                $("input[type='file']").addClass("file-input")
+                $(".file-input").on("change", (e) => {
+                    const files = Array.from(e.target.files)
+                    const names = files.flatMap(file => file.name).join(", ")
+                    $(".file-name").text(names)
+                })
+            </script>
+        </div>
+    </section>
+</body>
+</html>
