@@ -36,7 +36,8 @@ function toggleControls() {
     }
 }
 
-var currentPage = 1
+var currentPage = parseInt($("#page_current").val())
+console.log(currentPage)
 var maxPage = parseInt($("#image").attr("max"))
 
 function changePage() {

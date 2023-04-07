@@ -1,33 +1,32 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Manga Series</title>
 
-    <script src="{% static 'js/lib/jquery-3.6.4.js' %}"></script>
+{% include 'base.html' %}
+
+{% block 'head' %}
     <script src="{% static 'js/mangaInfoSearch.js' %}" defer></script>
 
-    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
-</head>
-<body>
-    <div class="navbar is-primary">
-        <div class="navbar-brand">
-            <div class="navbar-item">
-                Manga Reader
-            </div>
-        </div>
-    </div>
+    <style>
+        @media screen and (max-width: 1024px) {
+            tr {
+                display: flex !important;
+                flex-direction: column !important;
+            }
 
+            table td, table th {
+                border: none !important;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block 'content' %}
     <section class="section">
         <div class="container">
             <h1 class="title">Add manga series</h1>
     
             <form class="form" action="" method="POST" enctype="multipart/form-data">
-                <table class="table">
+                <table id="table" class="table">
                     {% csrf_token %}
                     {{manga_series_form.as_table}}
                     
@@ -68,5 +67,4 @@
             </script>
         </div>
     </section>
-</body>
-</html>
+{% endblock %}

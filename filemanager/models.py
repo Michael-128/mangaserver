@@ -9,6 +9,11 @@ class MangaSeriesModel(models.Model):
     volume_total = models.IntegerField(verbose_name="Total Volumes", null=True, blank=True)
     chapter_total = models.IntegerField(verbose_name="Total Chapters", null=True, blank=True)
 
+    @property
+    def thumbnail(self):
+        related_volume = MangaVolumeModel.objects.select_related("manga_series").filter(manga_series = self).get(volume = 1)
+        return related_volume.thumbnail
+
     def __str__(self):
         if self.author:
             return f"[{self.author}] {self.name}"
@@ -23,9 +28,13 @@ class MangaVolumeModel(models.Model):
     chapter = models.IntegerField(null=True)
 
     page_total = models.IntegerField(verbose_name="Total Pages")
-    page_current = models.IntegerField(default=0)
+    page_current = models.IntegerField(default=1)
 
     manga_series = models.ForeignKey(MangaSeriesModel, on_delete=models.CASCADE)
+
+    @property
+    def progress(self):
+        return round((self.page_current/self.page_total)*100)
 
     def __str__(self):
         return f"{self.manga_series.name} Vol. {self.volume}"

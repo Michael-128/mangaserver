@@ -4,11 +4,28 @@
     <section class="section">
         <div class="container">
             <h1 class="title">
-                Dashboard
+                Manga
             </h1>
             <ul>
                 {% for manga in manga_series %}
-                    <li> <a href="/manga_details?name={{ manga.model.name|urlencode}}">[{{manga.model.author}}] {{manga.model.name}}</a> </li>
+                    <div class="card mb-6">
+                        <div class="card-content">
+                          <div class="columns">
+                            <div class="column is-one-fifth">
+                              <figure class="image">
+                                <img src="media/{{manga.model.thumbnail}}" alt="Cover">
+                              </figure>
+                            </div>
+                            <div class="column">
+                              <p class="title is-4">
+                                <a style="color:black;" href="/manga_details?name={{ manga.model.name|urlencode}}">{{manga.model.name}}</a>
+                              </p>
+                              <p class="subtitle is-5">{{manga.model.author}}</p>
+                              <p class="subtitle is-6">{{manga.model.description|safe}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 {% endfor %}
             </ul>
         </div>

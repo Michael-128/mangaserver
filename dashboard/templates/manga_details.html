@@ -3,23 +3,79 @@
 {% block 'content' %}
     <section class="section">
         <div class="container">
-            <h1 class="title">{{name}}</h1>
+            <section class="section">
+                
+                <div class="columns">
+                    <div class="column is-one-fifth">
+                        <img src="media/{{ volumes.0.thumbnail }}" alt="">
+                    </div>
+                    <div class="column">
+                        <h1 class="title">{{series.name}}</h1>
+                        <h2 class="subtitle">{{series.author}}</h1>
+                        <p>
+                            {{series.description|safe}}
+                        </p>
+                    </div>
+                </div>
             
-            <ul>
-                {% for volume in volumes %}
-                    <li>
-                        <a href="/reader?name={{name|urlencode}}&volume={{volume.volume|urlencode}}">{{ name }} Vol. {{ volume.volume }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+                <br>
 
-            <form action="" method="POST" enctype="multipart/form-data" class="form">
-                {% csrf_token %}
-                <table>
-                    {{ form.as_table }}
-                </table>
-                <button type="submit">Submit</button>
-            </form>
+                <h3 class="subtitle"><strong>Volumes</strong></h3>
+
+                <ul>
+                    {% for volume in volumes %}
+                        <div class="box">
+                            <p class="is-size-5">
+                                <a href="/reader?name={{series.name|urlencode}}&volume={{volume.volume|urlencode}}">{{ series.name }} Vol. {{ volume.volume }}</a>
+                            </p>
+                            {% if volume.progress >= 98  %}
+                                <p class="tag is-primary">Finished</p>
+                            {% elif volume.progress > 1 %}
+                                <p class="tag is-light">{{volume.progress}}%</p>
+                            {% else %}
+                                <p class="tag is-danger">Unread</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </ul>
+            </section>
+            
+            <hr class="separator">
+
+            <section class="section">
+                <h1 class="title">Add Volumes</h1>
+                
+                <form action="" method="POST" enctype="multipart/form-data" class="form">
+                    {% csrf_token %}
+                    <table class="table">
+                        {% for field in form %}
+                            <div class="file has-name">
+                                <label class="file-label">
+                                    <input class="file-input" type="file" name="files" multiple="" id="id_files">
+                                    <span class="file-cta">
+                                        <span class="file-label">
+                                            Choose files...
+                                        </span>
+                                    </span>
+                                    <span class="file-name">
+                                        No file chosen...
+                                    </span>
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </table>
+                    <button class="button is-primary" type="submit">Submit</button>
+                </form>
+
+                <script>
+                    $(".file-input").on("change", (e) => {
+                        const files = Array.from(e.target.files)
+                        const names = files.flatMap(file => file.name).join(", ")
+                        $(".file-name").text(names)
+                    })
+                </script>
+            </section>
+            
         </div>
     </section>
 {% endblock %}

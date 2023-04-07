@@ -34,11 +34,11 @@ def manga_details(request):
                     manga_volume_model.save()
 
 
-            return redirect("/")
+            #return redirect("/")
 
     print(request.GET['name'])
     manga = models.MangaSeriesModel.objects.get(name = request.GET["name"])
     print(manga)
     volumes = models.MangaVolumeModel.objects.select_related("manga_series").filter(manga_series = manga).all()
 
-    return render(request, "manga_details.html", {'name': manga.name, 'volumes': volumes, 'form': forms.MangaVolumeForm()})
+    return render(request, "manga_details.html", {'series': manga, 'volumes': volumes, 'form': forms.MangaVolumeForm()})
