@@ -43,19 +43,9 @@ var maxPage = parseInt($("#image").attr("max"))
 function changePage() {
     $(".current-page-number").text(currentPage+"/"+maxPage)
     
-    $.get({
-        url: "/get_image", 
-        data: {file: file, page: currentPage},
-        success: function(image) {
-            var url = URL.createObjectURL(image)
-            $("#image").attr('src', url)
-        },
-        error: function(error) {
-            console.log(error)
-        },
-        xhrFields: {
-            responseType: "blob"
-        }
+
+    $.get("/get_image?file="+file+"&page="+currentPage, function(data) {
+        console.log(data)
     })
 
     // Doesn't work on older iOS devices
@@ -76,34 +66,28 @@ $("#image").on("load", function(e) {
 })
 
 function nextPage() {
-    hideControls()
-
-    if(currentPage >= maxPage) return
     currentPage++
     changePage()
     return currentPage
 }
 
 function previousPage() {
-    hideControls()
-
-    if(currentPage <= 1) return
     currentPage--
     changePage()
     return currentPage
 }
 
-$("#next-btn").on("click", nextPage)
-$(document).on("keydown", function(e) {
-    if(e.key == "ArrowLeft")
-    
+$("#next-btn").on("click", function(e) {
+    hideControls()
+
+    if(currentPage >= maxPage) return
     nextPage()
 })
 
-$("#previous-btn").on("click", previousPage)
-$(document).on("keydown", function(e) {
-    if(e.key == "ArrowRight")
+$("#previous-btn").on("click", function(e) {
+    hideControls()
 
+    if(currentPage <= 1) return
     previousPage()
 })
 
