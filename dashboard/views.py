@@ -9,10 +9,15 @@ def dashboard(request):
 
     manga_series = []
 
+    try:
+        thumbnail = models.MangaVolumeModel.objects.select_related("manga_series").get(volume = 1, manga_series = model).thumbnail
+    except:
+        thumbnail = ""
+
     for model in manga_series_models:
         manga_series.append({
             'model': model,
-            'thumbnail': models.MangaVolumeModel.objects.select_related("manga_series").get(volume = 1, manga_series = model).thumbnail
+            'thumbnail': thumbnail
         })
 
     return render(request, "dashboard.html", {'manga_series': manga_series})

@@ -1,4 +1,8 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
+
+{% block 'subtitle' %}
+Details
+{% endblock 'subtitle' %}
 
 {% block 'content' %}
     <section class="section">
@@ -51,7 +55,7 @@
                         {% for field in form %}
                             <div class="file has-name">
                                 <label class="file-label">
-                                    <input class="file-input" type="file" name="files" multiple="" id="id_files">
+                                    <input class="file-input" type="file" name="files" multiple="" accept="{{ form.get_accepted_file_extensions }}" id="id_files">
                                     <span class="file-cta">
                                         <span class="file-label">
                                             Choose files...
