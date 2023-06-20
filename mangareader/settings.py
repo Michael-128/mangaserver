@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-=0a7&b-9q4jio*l!t6h#@r0^*eszhhb2k&e-)q-%f3p!b675sx
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8970', 'https://localhost:8970', 'http://192.168.1.*:8970, https://192.168.1.*:8970', 'http://192.168.1.50:8970', 'https://192.168.1.50:8970', 'http://mangaserver.local', 'https://mangaserver.local']
 
 # Application definition
 
@@ -121,10 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "static/"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles/"), 
-]
+STATIC_ROOT = BASE_DIR / "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

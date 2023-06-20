@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  nginx:
+    build: ./nginx 
+    ports:
+      - 80:80
+    volumes:  
+#      - .:/mangaserver
+      - static_volume:/mangaserver/static
+      - /mnt/mangaserver/media:/mangaserver/media
+    depends_on: 
+      - web 
+    restart: "on-failure" 
+
+  web: # service name
+    build: . 
+    env_file:
+      - .env
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    python manage.py collectstatic --no-input --clear &&
+                    gunicorn mangareader.wsgi:application --bind 0.0.0.0:8970" 
+    volumes: 
+      - .:/mangaserver 
+      - static_volume:/mangaserver/static
+      - /mnt/mangaserver/media:/mangaserver/media
+    expose: 
+      - 8970 # retrieved from the .env file
+    restart: "on-failure"
+
+volumes:
+#  media_volume:
+#    driver: local
+#    external: true
+  static_volume:
+#    driver: local
