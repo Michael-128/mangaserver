@@ -23,5 +23,5 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('add_manga_series', views.add_manga_series, name="add_manga_series"),
+    path('add_manga_series/', views.add_manga_series, name="add_manga_series"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

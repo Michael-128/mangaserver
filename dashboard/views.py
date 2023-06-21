@@ -28,6 +28,7 @@ def manga_details(request):
     if request.method == "POST":
         manga_series_model = models.MangaSeriesModel.objects.get(name = request.GET["name"])
         files = request.FILES.getlist('files')
+        print("post")
         if files:
             volume = models.MangaVolumeModel.objects.select_related("manga_series").filter(manga_series = manga_series_model).latest('volume').volume
             for file in files:

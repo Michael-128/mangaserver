@@ -9,8 +9,19 @@
     <title>MangaReader - {% block 'subtitle' %}{% endblock 'subtitle' %}</title>
     <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
     <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo/logo_64.png' %}">
+
 
     <script src="{% static 'js/jquery-3.6.2.js' %}"></script>
+    <script src="{% static 'js/uploadProgressBar.js' %}" defer></script>
+
+    <style>
+        .progress {
+            border-radius: 0;
+            max-height: 5px;
+            display: none;
+        }
+    </style>
 
     {% block 'head' %}{% endblock %}
 </head>

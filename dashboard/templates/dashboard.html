@@ -17,7 +17,7 @@ Dashboard
                           <div class="columns">
                             <div class="column is-one-fifth">
                               <figure class="image">
-                                <img src="media/{{manga.model.thumbnail}}" alt="Cover">
+                                <img src="/media/{{manga.model.thumbnail}}" alt="Cover">
                               </figure>
                             </div>
                             <div class="column">
@@ -30,6 +30,8 @@ Dashboard
                           </div>
                         </div>
                       </div>
+                {% empty %}
+                      <div>Add your manga <a href="/add_manga_series">here</a>.</div>
                 {% endfor %}
             </ul>
         </div>

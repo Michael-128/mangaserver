@@ -1,8 +1,9 @@
+/*
 @import "../static/fontawesome/scss/fontawesome.scss";
 
 @import "../static/fontawesome/scss/solid.scss";
 @import "../static/fontawesome/scss/brands.scss";
-
+*/
 
 @font-face {
     font-family: Noto Sans;
@@ -23,8 +24,7 @@ $background-color: lighten(rgb(189,0,135), 55%);
 
 
 i {
-    font-size: x-large;
-
+    font-size: 40px !important;
     &:hover {
         color: white;
         cursor: pointer;

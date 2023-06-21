@@ -23,6 +23,9 @@ class MangaSeriesModel(models.Model):
     
 class MangaVolumeModel(models.Model):
     file = models.FileField()
+    @property
+    def file_size(self):
+        return self.file.size
 
     thumbnail = models.ImageField(null=True)
 

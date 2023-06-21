@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
+{% load sizify %}
 
 {% block 'subtitle' %}
 Details
 {% endblock 'subtitle' %}
 
 {% block 'content' %}
+    <progress class="progress is-small is-primary" value="0" max="100"></progress>
+
     <section class="section">
         <div class="container">
             <section class="section">
                 
                 <div class="columns">
                     <div class="column is-one-fifth">
-                        <img src="media/{{ volumes.0.thumbnail }}" alt="">
+                        <img src="/media/{{ volumes.0.thumbnail }}" alt="">
                     </div>
                     <div class="column">
                         <h1 class="title">{{series.name}}</h1>
@@ -39,6 +42,8 @@ Details
                             {% else %}
                                 <p class="tag is-danger">Unread</p>
                             {% endif %}
+                            <p class="tag">{{volume.page_total}} pages</p>
+                            <p class="tag">{{volume.file_size|sizify}}</p>
                         </div>
                     {% endfor %}
                 </ul>

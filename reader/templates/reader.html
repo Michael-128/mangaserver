@@ -8,6 +8,9 @@
     <title>MangaReader - Reader</title>
     <script src="{% static 'js/jquery-3.6.2.js' %}"></script>
     <script src="{% static 'js/reader.js' %}" defer></script>
+    
+    <link rel="stylesheet" href="{% static 'css/material-icons.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/reader.css' %}">
 </head>
 <body>
@@ -22,20 +25,30 @@
 
     <div class="controls">
         <form action="/">
-            <button type="submit" id="close-btn"><i class="fa fa-home" aria-hidden="true"></i></button>
+            <button type="submit" id="close-btn">
+                <i class="material-symbols-rounded">
+                    home
+                </i>            
+            </button>
         </form>
         <button id="skip-10" style="transform: rotate(180deg)">
-            <i class="fa fa-forward fa-rotate-by 90" aria-hidden="true"></i>
+            <i class="material-symbols-rounded">
+                fast_forward
+            </i>  
         </button>
         <div id="image-scale-container">
             <span id="image-scale-span">100%</span>
             <input type="range" min="100" max="500" value="100" name="image-scale" id="image-scale">
         </div>
         <button id="skip-10-back">
-            <i class="fa fa-forward" aria-hidden="true"></i>
+            <i class="material-symbols-rounded">
+                fast_forward
+            </i>  
         </button>
         <button id="fill-width-btn">
-            <i class="fa-solid fa-left-right"></i>
+            <i class="material-symbols-rounded">
+                width
+            </i>  
         </button>
     </div>
 

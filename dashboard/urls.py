@@ -24,5 +24,5 @@ from . import views
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
-    path('manga_details', views.manga_details, name="manga_details")
+    path('manga_details/', views.manga_details, name="manga_details")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
